@@ -1,0 +1,77 @@
+CITARI OFFLINE KNOWLEDGE CATALOG — LICENSING & ATTRIBUTION NOTICE
+==================================================================
+
+This repository hosts unencrypted, Ed25519-signed offline knowledge packs and
+catalog metadata built for Citari. Packs are compiled from multiple commercially
+permissive open-knowledge sources. Each pack's exact license identifier, license
+URL, snapshot date, and upstream source URL are embedded in both its
+`manifest.json` and the `pack_meta` table of its `content.sqlite` database.
+
+1. WIKIMEDIA PROJECTS (CC BY-SA 4.0)
+------------------------------------
+Packs derived from Wikimedia Foundation projects—including Simple English
+Wikipedia (`en-wiki-top50k`), English Wikibooks (`en-wikibooks-guides`), English
+Wikiversity (`en-wikiversity-cs`), and future Wikimedia packs (such as English
+Wikipedia shards, Wikivoyage, Wiktionary, or Wikisource)—are licensed under the:
+
+  Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)
+  Full legal text: https://creativecommons.org/licenses/by-sa/4.0/legalcode
+  Human-readable summary: https://creativecommons.org/licenses/by-sa/4.0/
+
+Under CC BY-SA 4.0, you are free to share (copy and redistribute the material in
+any medium or format) and adapt (remix, transform, and build upon the material)
+for any purpose, even commercially, provided you:
+  - Give appropriate credit to the original authors/contributors (per-article
+    `source_url` and `revision_id` are preserved in the `articles` table of
+    `content.sqlite`, linking to each upstream page and its edit history),
+    provide a link to the license, and indicate if changes were made.
+  - Distribute any adaptations under the same license (ShareAlike).
+  - Do not apply legal terms or technological measures (DRM) that legally
+    restrict others from doing anything the license permits.
+
+Upstream dumps sourced from: https://dumps.wikimedia.org/
+
+2. OTHER & FUTURE OPEN-LICENSED PACKS
+-------------------------------------
+Citari's pack pipeline enforces a fail-closed commercial-use allowlist. Future
+packs added to this catalog may be distributed under one of the following
+permissive licenses, as declared in each pack's `manifest.json` and `pack_meta`:
+
+  - CC BY-SA 4.0 (e.g., Appropedia):
+    https://creativecommons.org/licenses/by-sa/4.0/
+  - CC BY-SA 2.5 (e.g., MDN Web Docs):
+    https://creativecommons.org/licenses/by-sa/2.5/
+  - CC BY 4.0:
+    https://creativecommons.org/licenses/by/4.0/
+  - CC0 1.0 Universal (Public Domain Dedication):
+    https://creativecommons.org/publicdomain/zero/1.0/
+  - U.S. Federal Government Public Domain (17 U.S.C. § 105; federal .gov/.mil
+    works only, excluding state/local works and copyrighted third-party material):
+    https://www.usa.gov/government-copyright
+
+3. SUMMARY OF MODIFICATIONS
+---------------------------
+All packs in this catalog are modified from their upstream source dumps as
+follows:
+  - Converted from source wikitext or documents to plain UTF-8 Markdown.
+  - Infoboxes, tables, galleries, images, and reference footnotes were removed.
+  - Articles flagged with copyright/non-free templates or categories, stub
+    articles below the configured character threshold, and sub-article Fair Use
+    blocks (<poem>, <score>, and lengthy verbatim quote templates) were stripped
+    prior to indexing.
+  - Remaining text was segmented into UTF-16 citation chunks, indexed with
+    SQLite FTS5 and USearch HNSW vectors, and compressed with Zstd for offline
+    search.
+
+4. CATALOG METADATA & REPOSITORY DOCUMENTATION
+----------------------------------------------
+Original catalog metadata (`catalog.json`, `manifest.json`), signatures, and
+documentation in this repository are dedicated to the public domain under
+CC0 1.0 Universal (https://creativecommons.org/publicdomain/zero/1.0/), except
+where third-party attribution notices apply.
+
+5. TRADEMARKS & NON-AFFILIATION
+-------------------------------
+Independent offline knowledge pack built by Citari. Not affiliated with,
+sponsored by, or endorsed by the Wikimedia Foundation, the U.S. Government, or
+any listed source. All trademarks remain the property of their respective owners.
